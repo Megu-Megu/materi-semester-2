@@ -1,0 +1,109 @@
+class Node:
+    def __init__(self, value):
+      self.value = value
+      self.next = None
+      self.prev = None
+ 
+class DoublyLinkedList:
+    def __init__(self, value):
+       new_node = Node(value)
+       self.head = new_node
+       self.tail = new_node
+       self.length = 1
+       
+    def print_list(self):
+        temp = self.head
+        while temp is not None:
+            print(temp.value)
+            temp = temp.next
+    
+    def append(self,value):
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
+        self.length += 1
+        return True
+    
+    def sort(self):
+        if self.head is None or self.head.next is None:
+            return
+        end = None
+        while end != self.head.next:
+            current = self.head
+            while current.next != end:
+                if current.value > current.next.value:
+                    # Tukar posisi node
+                    temp = current.value
+                    current.value = current.next.value
+                    current.next.value = temp
+                current = current.next
+            end = current
+
+    def categorize(self):
+        if self.head is None:
+            return None, None
+        dewasa = DoublyLinkedList()
+        masih_kecil = DoublyLinkedList()
+        current = self.head
+        while current is not None:
+            if current.value >= 300:
+                dewasa.append(current.value)
+            else:
+                masih_kecil.append(current.value)
+            current = current.next
+
+        return dewasa,masih_kecil
+        
+
+
+double = DoublyLinkedList(12)
+dewasa, masih_kecil = double.categorize()
+def menu():
+    print("menu tiket antrian pengambilan sembako 2023")
+    print("1. dapatkan nomor antrian anda")
+    print("2. lihat nomor anntrian anda ")
+    print("3. batalkan nomor antrian")
+    print("4. keluar")
+
+def masukan_ayam():
+    while True:
+        double.append(int(input("masukan umur ayam yang ingin anda titipkan : ")))
+        print("apakah anda ingin menitipkan lagi ? (jawab dengan y / t)")
+        jawab = input("jawaban : ")
+        if jawab == "y":
+            True
+        else:
+            break
+def mengurutkan_ayam_pak_j0():
+    double.sort()
+    print("list data ayam Pak Jo yang sudah di urutkan : ")
+    double.print_list()
+
+def tampil():
+    print("list data umur ayam pak Jo saat ini : ")
+    double.print_list()
+
+def cek_dewasa_atau_belum():
+    double.categorize()
+    print("ayam yang belum dewasa  : ")
+    masih_kecil.print_list()
+ 
+
+while True:
+    menu()
+    pilih = input("masukan nomor menu sesuai yang ingin anda jalankan : ")
+    if pilih == "1":
+        masukan_ayam()
+    if pilih == "2":
+       tampil()
+    if pilih == "3":
+       mengurutkan_ayam_pak_j0()
+    if pilih == "4":
+       cek_dewasa_atau_belum()
+    
+    
