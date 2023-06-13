@@ -1,0 +1,93 @@
+import os
+os.system('cls')
+class Node:
+    def __init__ (self, value):
+        self.value = value
+        self.next = None
+class Queue:
+    def __init__(self, value):
+        new_node = Node(value)
+        self.first = new_node
+        self.last = new_node
+        self.lenght = 1
+    
+    def print_queue(self):
+        temp = self.first
+        while temp is not None:
+            print("Sembako rakyat no - ", (temp.value))
+            temp = temp.next
+    
+    def enqueue(self, value):
+        new_node = Node(value)
+        if self.first is None:
+            self.first = new_node
+            self.last = new_node
+        else:
+            self.last.next = new_node
+            self.last = new_node
+        self.lenght += 1
+        return True
+    
+    def dequeue(self):
+        if self.lenght == 0:
+            return None
+        temp = self.first
+        if self.lenght == 1:
+            self.first = None
+            self.last = None
+        else:
+            self.first = self.first.next
+            temp.next = None
+        self.lenght -= 1
+        return temp
+
+my_queue = Queue(1)
+def menu():
+    print("menu tiket antrian pengambilan sembako 2023")
+    print("1. dapatkan nomor antrian anda")
+    print("2. lihat nomor anntrian anda ")
+    print("3. batalkan nomor antrian")
+    print("4. keluar")
+
+def dapat_tiket():
+    antrian = my_queue.lenght
+    if antrian == 0:
+        my_queue.enqueue(1)
+        print("anda mendapat antrian nomor 1")
+        print("jumlah antrian saat ini adalah : ",my_queue.lenght)
+    
+    elif antrian == 1:
+        my_queue.enqueue(2)
+        print("anda mendapat antrian nomor 2")
+        print("jumlah antrian saat ini adalah : ",my_queue.lenght)
+
+    elif antrian == 2:
+        my_queue.enqueue(3)
+        print("anda mendapat antrian nomor 3")
+        print("jumlah antrian saat ini adalah : ",my_queue.lenght)
+
+def lihat_antrian():
+    print("antrian saat ini berjumlah :", my_queue.lenght)
+    my_queue.print_queue()
+
+def batal_memesan():
+    my_queue.dequeue()
+    print("anda berhasil membatalkan nomor antrian anda")
+    print("antrian saat ini berjumlah : ", my_queue.lenght)
+
+while True:
+    menu()
+    pilih = input("pilih apa yang anda ingin lakukan :  ")
+    if pilih == "1":
+        dapat_tiket()
+    elif pilih == "2":
+        lihat_antrian()
+    elif pilih == "3":
+        batal_memesan()
+    else:
+        exit()
+    a = input("apakah anda ingin melanjutkan ?? (y/t)")
+    if a == "y":
+        True
+    else:
+        exit()
