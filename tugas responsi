@@ -37,18 +37,18 @@ class DoublyLinkedList:
             current = self.head
             while current.next != end:
                 if current.value > current.next.value:
-                    # Tukar posisi node
                     temp = current.value
                     current.value = current.next.value
                     current.next.value = temp
                 current = current.next
             end = current
 
-    def categorize(self):
+    def ayam_kecil_dewasa(self):
+        double.sort()
         if self.head is None:
             return None, None
-        dewasa = DoublyLinkedList()
-        masih_kecil = DoublyLinkedList()
+        dewasa = DoublyLinkedList("")
+        masih_kecil = DoublyLinkedList("")
         current = self.head
         while current is not None:
             if current.value >= 300:
@@ -56,54 +56,40 @@ class DoublyLinkedList:
             else:
                 masih_kecil.append(current.value)
             current = current.next
-
         return dewasa,masih_kecil
         
 
 
 double = DoublyLinkedList(12)
-dewasa, masih_kecil = double.categorize()
-def menu():
-    print("menu tiket antrian pengambilan sembako 2023")
-    print("1. dapatkan nomor antrian anda")
-    print("2. lihat nomor anntrian anda ")
-    print("3. batalkan nomor antrian")
-    print("4. keluar")
-
-def masukan_ayam():
-    while True:
-        double.append(int(input("masukan umur ayam yang ingin anda titipkan : ")))
-        print("apakah anda ingin menitipkan lagi ? (jawab dengan y / t)")
-        jawab = input("jawaban : ")
-        if jawab == "y":
-            True
-        else:
-            break
-def mengurutkan_ayam_pak_j0():
-    double.sort()
-    print("list data ayam Pak Jo yang sudah di urutkan : ")
-    double.print_list()
-
-def tampil():
-    print("list data umur ayam pak Jo saat ini : ")
-    double.print_list()
-
-def cek_dewasa_atau_belum():
-    double.categorize()
-    print("ayam yang belum dewasa  : ")
-    masih_kecil.print_list()
- 
-
-while True:
-    menu()
-    pilih = input("masukan nomor menu sesuai yang ingin anda jalankan : ")
-    if pilih == "1":
-        masukan_ayam()
-    if pilih == "2":
-       tampil()
-    if pilih == "3":
-       mengurutkan_ayam_pak_j0()
-    if pilih == "4":
-       cek_dewasa_atau_belum()
-    
-    
+double.append(24)
+double.append(80)
+double.append(77)
+double.append(7)
+double.append(170)
+double.append(589)
+double.append(125)
+double.append(569)
+double.append(444)
+double.append(561)
+double.append(189)
+double.append(221)
+double.append(566)
+double.append(211)
+double.append(217)
+double.append(9)
+double.append(120)
+double.append(111)
+double.append(599)
+dewasa, masih_kecil = double.ayam_kecil_dewasa()
+print("=="*50)
+print("List umur ayam Pak joko : ")
+double.print_list()
+print("=="*50)
+print("umur ayam Pak Joko setelah diurutkan:  ")
+double.sort()
+double.print_list()
+print("=="*50)
+print("ayam pak Joko setelah di seleksi : ")
+double.ayam_kecil_dewasa()
+dewasa.print_list()
+print("=="*50)
