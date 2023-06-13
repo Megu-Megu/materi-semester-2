@@ -1,0 +1,15 @@
+def funchtree():
+    print("Three")
+def funchtwo():
+    funchtree()
+    print("two")
+def funchone():
+    funchtwo()
+    print("one")
+funchone()
+
+def factorial(n):
+    if n == 1:
+        return 1
+    return n * factorial(n-1)
+print(factorial(4))
